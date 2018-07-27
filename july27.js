@@ -12,18 +12,30 @@
 // }
 
 // greet(5);
-var newArray = [];
+// var newArray = [];
 
-function steamrollArray(arr) {
-    debugger;
-    var index = arr.length;
+// function steamrollArray(arr) {
+//     debugger;
+//     var index = arr.length;
     
-    if ((Array.isArray([arr[index - 1]])) && arr.length > 0) {
-        steamrollArray(arr[index - 1]);
-    } else {
-        newArray.push(arr);
-    }
-    return newArray;    
-}
+//     if ((Array.isArray([arr[index-1]])) && arr.length > 0) {
+//         steamrollArray(arr[index-1]);
+//     } else {
+//         newArray.push(arr);
+//     }  
+//     console.log(newArray);
+// }
 
-console.log(steamrollArray([1, [2], [3, [[4]]]]));
+// console.log(steamrollArray([1, [2], [3, [[4]]]]));
+var finalArray = [];
+function flatten(arr) {
+    arr.forEach(function(item) {
+        if (Array.isArray(item)) {
+            flatten(item);
+        } else {
+            finalArray.push(item);
+        }
+    });
+    return finalArray;
+}
+console.log(flatten([1, [2], [3, [[4]]]]));
