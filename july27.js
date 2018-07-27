@@ -16,13 +16,14 @@ var newArray = [];
 
 function steamrollArray(arr) {
     debugger;
-    var index = arr.length - 1;
-    if ((typeof arr[index]) !== number) {
-        steamrollArray(arr[index - 1]);
-    }
+    var index = arr.length;
     
-    newArray.push(arr[index]);
-    return newArray;
+    if ((Array.isArray([arr[index - 1]])) && arr.length > 0) {
+        steamrollArray(arr[index - 1]);
+    } else {
+        newArray.push(arr);
+    }
+    return newArray;    
 }
 
-steamrollArray([1, [2], [3, [[4]]]]);
+console.log(steamrollArray([1, [2], [3, [[4]]]]));
