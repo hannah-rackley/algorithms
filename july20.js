@@ -1,8 +1,7 @@
 //   Case converter
-// Write a function caseConvert that accepts two arguments. The first is a string, the second is type. If the type is "camelcase" then convert the string to camelcase (each word except the first is capitalized, no spaces). If type is "snakecase" then convert the string to snakecase (each word is separated by a - and all lowercase). As a bonus, accept a string or an array. If it's an array, use .join and proceed accordingly.
 var capitalize = function capitalize(string) {
     var lowerString = string.toLowerCase();
-    stringArray = lowerString.split(" ");
+    var stringArray = lowerString.split(" ");
     var capArray = []
     var finalString = ""
     for (var i = 0; i < stringArray.length; i++) {
@@ -41,12 +40,12 @@ var caseConvert = function caseConvert(str, conversionType) {
 //SnakecaseAssertions
 console.assert(caseConvert("hello", "snakecase") === "hello", "string should be returned.");
 console.assert(caseConvert("goodbye", "snakecase") === "goodbye", "Return the input string"); 
-console.assert(caseConvert("HELLO", "snakecase") === "hello", "String must be lowercase");
-console.assert(caseConvert("Hello world", "snakecase") === "hello_world", "Replace space in string with underscore");
+console.assert(caseConvert("HELLO", "snakecase") === "hello", "String should be lowercase");
+console.assert(caseConvert("Hello world", "snakecase") === "hello_world", "Spaces should be replaced in string with underscores");
 console.assert(caseConvert("Hello world ", "snakecase") === "hello_world", "No underscores at the end of string");
 //Camelcase assertions
-console.assert(caseConvert("Hello world", "camelcase") === "helloWorld", "Don't print underscores and capitalize appropriately");
-console.assert(caseConvert("Hannah Glasser", "camelcase") === "hannahGlasser", "Return string in camelcase.");
+console.assert(caseConvert("Hello world", "camelcase") === "helloWorld", "A string with spaces should not have spaces");
+console.assert(caseConvert("Hannah Glasser", "camelcase") === "hannahGlasser", "The words after the first in a string should be capitalized");
 //Capitalize assertions
 console.assert(capitalize("hello") === "Hello", "Capitalize the first letter");
 console.assert(capitalize("hello world") === "Hello World", "Capitalize a string");
