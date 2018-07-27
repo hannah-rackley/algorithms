@@ -53,11 +53,19 @@ console.log(flatten([1, [2], [3, [[4]]]]));
 // Return false
 // findElement['Jim','Indian','Marsh','Glitch'], function(str){reutrn str.indexOf('itch) !== -1})
 
-var findElement = function (array, fn) {
-
-    for (var i = 0; i < array.length; i++) {
-        if (fn(array[i])) {
-            return array[i];
+var findElement = function (array, fn, type) {
+    debugger;
+    if (type === 'number') {
+        for (var i = 0; i < array.length; i++) {
+            if (fn(array[i])) {
+                return array[i];
+            }
+        }
+    } else if (type === 'string') {
+        for (var i = 0; i < array.length; i++) {
+            if (fn(array[i]) ) {
+                
+            }
         }
     }
     return false;
