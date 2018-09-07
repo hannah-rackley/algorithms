@@ -29,6 +29,7 @@ let getSortedArray = (obj) => {
 let sortableLetterFrequency = getSortedArray(happy);
 
 let sortIntoArray = (objects) => {
+    console.log(objects);
     let sortedObjects = objects.sort((a, b) => {
         if (a.value === b.value) {
             return b.key < a.key;
