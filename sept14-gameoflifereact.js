@@ -75,65 +75,81 @@ class Square extends React.Component {
     }
 
     render() {
-        return <button className="square" onClick={() => this.setState({ value: true })}>{JSON.stringify(this.state.value)}</button>
+        return <button className="square" onClick={() => this.setState({ value: !this.state.value })}>{JSON.stringify(this.state.value)}</button>
     }
 }
 
 class Board extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            board: Array(5).fill(Array(5)).fill(false)
+        };
+    }
+    //handle clicks update board at i based upon value
+    setSquareValue(index) {
+        console.log(this.state.board);
+        const newBoard = this.state.board.slice();
+        newBoard[index] = !this.state.board[index];
+        this.setState({board: newBoard})
+    }
+
+    handleClick(i) {
+        this.setSquareValue(i);
+    }
+
+    renderSquare(i) {
+        return <Square
+            value={this.state.board[i]} onClick={this.handleClick(i)}/>
+    }
     render() {
         return (
         <div className="board">
             <div className="board-row">
-                <Square/>
-                <Square/>
-                <Square/>
-                <Square/>
-                <Square/>
+                {this.renderSquare(0)}
+                {this.renderSquare(1)}
+                {this.renderSquare(2)}
+                {this.renderSquare(3)}
+                {this.renderSquare(4)}
             </div>
             <div className="board-row">
-                <Square/>
-                <Square/>
-                <Square/>
-                <Square/>
-                <Square/>
+                {this.renderSquare(5)}
+                {this.renderSquare(6)}
+                {this.renderSquare(7)}
+                {this.renderSquare(8)}
+                {this.renderSquare(9)}
             </div>
             <div className="board-row">
-                <Square/>
-                <Square/>
-                <Square/>
-                <Square/>
-                <Square/>
+                {this.renderSquare(10)}
+                {this.renderSquare(11)}
+                {this.renderSquare(12)}
+                {this.renderSquare(13)}
+                {this.renderSquare(14)}
             </div>
             <div className="board-row">
-                <Square/>
-                <Square/>
-                <Square/>
-                <Square/>
-                <Square/>
+                {this.renderSquare(15)}
+                {this.renderSquare(16)}
+                {this.renderSquare(17)}
+                {this.renderSquare(18)}
+                {this.renderSquare(19)}
             </div>
             <div className="board-row">
-                <Square/>
-                <Square/>
-                <Square/>
-                <Square/>
-                <Square/>
+                {this.renderSquare(20)}
+                {this.renderSquare(21)}
+                {this.renderSquare(22)}
+                {this.renderSquare(23)}
+                {this.renderSquare(24)}
             </div>
       </div>);
     }
 }
 
 class Homepage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            board: Array(5).fill(Array(5)).fill(false)
-        }
-    }
     render() {
         return <div className="homepage">
             <h1>Game of Life</h1>
             <button>Next!</button>
-            <Board board={this.state.board}/>
+            <Board setSquareValue={this.setSquareValue} />
         </div>
     }
  }
