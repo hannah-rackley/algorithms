@@ -13,23 +13,14 @@ let tasks2 = [
     { node: 'c', depends: ['b'] },
   ];
 
-let originalArray = (tasks) => {
-    let taskArray = tasks.map(task => task.node);
-    return taskArray;
-};
-
-let orderOfChores = (arr, tasks) => {
+let orderOfChores = (tasks) => {
+    let arr = tasks.map(task => task.node);
     let finalArray = [];
     while (finalArray.length < arr.length) {
-        tasks.map(task => {
+        tasks.forEach(task => {
             if (!finalArray.includes(task.node)){
-                let included = 0;
-                task.depends.forEach(depend => {
-                    if (finalArray.includes(depend)) {
-                        included += 1;
-                    }    
-                });
-                if (included === task.depends.length) {
+                let notIncluded = task.depends.find(depend => !finalArray.includes(depend));
+                if (notIncluded === undefined) {
                     finalArray.push(task.node)
                 }
             }
@@ -38,9 +29,5 @@ let orderOfChores = (arr, tasks) => {
     return finalArray
 };
 
-let taskNames = originalArray(tasks);
-let taskNames2 = originalArray(tasks2);
-
-console.log(orderOfChores(taskNames, tasks));
-
-console.log(orderOfChores(taskNames2, tasks2));
+console.log(orderOfChores(tasks));
+console.log(orderOfChores(tasks2));
